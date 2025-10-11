@@ -50,7 +50,7 @@
 </div>
 </section>
 <div class="back-button">
-<a href="https://anjokosei.jp">次へ</a>
+<button id="closeBtn">ページを閉じる</button>
 </div>
 <script>
     const track = document.querySelector('.carousel-track');
@@ -117,7 +117,25 @@ const indicators = indicatorsContainer.querySelectorAll('.indicator');
     window.addEventListener('load', updateSlidePosition);
     window.addEventListener('resize', updateSlidePosition);
   </script>
-  <!-- answer.html の </body>直前に追加 -->
+
+  <div class="back-button">
+  <button id="closeBtn">ページを閉じる</button>
+</div>
+
+<script>
+  document.getElementById('closeBtn').addEventListener('click', () => {
+    window.close();
+
+    // もし閉じられなかった場合（普通のブラウザタブ）
+    setTimeout(() => {
+      if (!window.closed) {
+        alert('このページを閉じて終了してください。');
+      }
+    }, 300);
+  });
+</script>
+
+<!-- スプレットシート記載用 -->
 <script>
   (function(){
     if (sessionStorage.getItem('authenticated') !== 'true') return;
