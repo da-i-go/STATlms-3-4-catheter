@@ -121,15 +121,14 @@ const indicators = indicatorsContainer.querySelectorAll('.indicator');
 <script>
   (function(){
     if (sessionStorage.getItem('authenticated') !== 'true') return;
-
+    const API  = 'https://script.google.com/macros/s/AKfycbxNH_m-AjZX3oqKIO1cqc4sRXOrfaLi-aYctLMZWwdGwgkdUCkcVrFpPggRMDK7w1Hm/exec';
     const uid  = sessionStorage.getItem('uid') || 'anonymous';
     const page = location.pathname;
     const ts   = new Date().toISOString();
-    const API  = 'https://script.google.com/macros/s/AKfycbxNH_m-AjZX3oqKIO1cqc4sRXOrfaLi-aYctLMZWwdGwgkdUCkcVrFpPggRMDK7w1Hm/exec'; // 置換
 
     fetch(API + '?route=log', {
       method: 'POST',
-      headers: {'Content-Type':'text/plain;charset=utf-8'},
+      headers: { 'Content-Type':'text/plain;charset=utf-8' },
       body: JSON.stringify({ uid, page, ts })
     }).catch(console.warn);
   })();
