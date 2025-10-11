@@ -22,32 +22,39 @@
   </main>
 
   <script>
-    const API = 'https://script.google.com/macros/s/AKfycbxNH_m-AjZX3oqKIO1cqc4sRXOrfaLi-aYctLMZWwdGwgkdUCkcVrFpPggRMDK7w1Hm/exec'; // 置換
+  const API = 'https://script.google.com/macros/s/AKfycbxNH_m-AjZX3oqKIO1cqc4sRXOrfaLi-aYctLMZWwdGwgkdUCkcVrFpPggRMDK7w1Hm/exec';
 
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const uid = new FormData(e.target).get('uid').trim();
-      if (!uid) return alert('IDを入力してください');
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    let uid = new FormData(e.target).get('uid') || '';
+    // 全角英数→半角、空白除去、trim
+    uid = uid.replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0)-0xFEE0))
+             .replace(/\s+/g,'')
+             .trim();
+    if (!uid) return alert('IDを入力してください');
 
-      try {
-        const r = await fetch(API + '?route=verify', {
-          method: 'POST',
-          headers: {'Content-Type':'text/plain;charset=utf-8'},
-          body: JSON.stringify({ uid })
-        });
-        const j = await r.json();
-        if (j.ok) {
-          sessionStorage.setItem('authenticated','true');
-          sessionStorage.setItem('uid', uid);
-          location.replace('patient.html');
-        } else {
-          alert(j.error || 'IDが無効です');
-        }
-      } catch(err){
-        console.error(err);
-        alert('通信エラー。時間をおいて再試行してください。');
+    try {
+      const r = await fetch(API + '?route=verify', {
+        method: 'POST',
+        headers: { 'Content-Type':'text/plain;charset=utf-8' }, // プリフライト回避
+        body: JSON.stringify({ uid })
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const j = await r.json();
+
+      if (j.ok) {
+        sessionStorage.setItem('authenticated','true');
+        sessionStorage.setItem('uid', uid);
+        if (j.name) sessionStorage.setItem('name', j.name);
+        location.replace('patient.html');
+      } else {
+        alert(j.error || 'IDが無効です');
       }
-    });
-  </script>
+    } catch(err){
+      console.error(err);
+      alert('通信エラー。時間をおいて再試行してください。');
+    }
+  });
+</script>
 </body>
 </html>
