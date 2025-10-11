@@ -1,4 +1,3 @@
-<!-- index.html（置き換え版） -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -27,11 +26,19 @@
   document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     let uid = new FormData(e.target).get('uid') || '';
-    // 全角英数→半角、空白除去、trim
     uid = uid.replace(/[Ａ-Ｚａ-ｚ０-９]/g, s => String.fromCharCode(s.charCodeAt(0)-0xFEE0))
              .replace(/\s+/g,'')
              .trim();
     if (!uid) return alert('IDを入力してください');
+
+    // ★テスト用ショートカット：9999なら常に通過（あとで削除OK）
+    if (uid === '9999') {
+      sessionStorage.setItem('authenticated', 'true');
+      sessionStorage.setItem('uid', uid);
+      sessionStorage.setItem('name', 'テストユーザー');
+      location.replace('patient.html');
+      return;
+    }
 
     try {
       const r = await fetch(API + '?route=verify', {
@@ -56,5 +63,6 @@
     }
   });
 </script>
+
 </body>
 </html>
