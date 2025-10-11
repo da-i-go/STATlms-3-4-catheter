@@ -129,7 +129,7 @@ const indicators = indicatorsContainer.querySelectorAll('.indicator');
 
     fetch(API + '?route=log', {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
+      headers: {'Content-Type':'text/plain;charset=utf-8'},
       body: JSON.stringify({ uid, page, ts })
     }).catch(console.warn);
   })();
