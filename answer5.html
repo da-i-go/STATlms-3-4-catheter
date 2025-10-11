@@ -125,7 +125,7 @@ const indicators = indicatorsContainer.querySelectorAll('.indicator');
     const uid  = sessionStorage.getItem('uid') || 'anonymous';
     const page = location.pathname;
     const ts   = new Date().toISOString();
-    const API  = 'https://script.google.com/macros/s/AKfycbykejn3k5tWKZj45piv9ZpJh5tlB6cHjRnBIQm8tJamuOYPLK_uCfhzCeiS3xP3-xZu/exec'; // 置換
+    const API  = 'https://script.google.com/macros/s/AKfycbxNH_m-AjZX3oqKIO1cqc4sRXOrfaLi-aYctLMZWwdGwgkdUCkcVrFpPggRMDK7w1Hm/exec'; // 置換
 
     fetch(API + '?route=log', {
       method: 'POST',
