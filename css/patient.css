@@ -1,0 +1,103 @@
+/* ベースのスタイル */
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  margin: 0;
+  padding: 2em;
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 1.5em;
+  color: #1a73e8;
+}
+
+/* 患者情報カード */
+.patient-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  max-width: 600px;
+  margin: 0 auto 2em auto;
+  padding: 1.5em;
+}
+
+/* 各行のラベルと値を2列に分けて整列（ズレ防止済み） */
+.patient-card .row {
+  display: grid;
+  grid-template-columns: 100px 1fr;;
+  align-items: start;  /* 見出しと最初の説明の行を揃える */
+  gap: 1em;
+  padding: 0.4em 0;
+}
+
+.label {
+  font-weight: bold;
+  white-space: nowrap;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+.value {
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+/* 次のページへのボタン */
+.next-button {
+  text-align: center;
+}
+
+.next-button a {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  background-color: #1a73e8;
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.next-button a:hover {
+  background-color: #155ab6;
+}
+
+/* モバイル対応 */
+@media (max-width: 600px) {
+  body {
+    padding: 1em;
+  }
+
+  .patient-card {
+    padding: 1em;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 1.6em;
+  }
+
+  .next-button a {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

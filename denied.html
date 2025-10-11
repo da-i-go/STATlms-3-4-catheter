@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>アクセス拒否</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f8d7da;
+      color: #721c24;
+      text-align: center;
+    }
+    .card {
+      background-color: #f5c6cb;
+      border: 1px solid #f5c2c7;
+      padding: 2em;
+      border-radius: 1em;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      margin-bottom: 0.5em;
+    }
+    p {
+      margin-top: 0;
+    }
+  </style>
+  <script>
+    // 戻るボタン無効化
+    history.pushState(null, null, location.href);
+    window.addEventListener("popstate", function () {
+      history.pushState(null, null, location.href);
+    });
+
+    // 自動で閉じる（ポップアップで開かれていた場合）
+    setTimeout(() => {
+      window.open('', '_self');
+      window.close();
+    }, 8000);
+  </script>
+</head>
+<body>
+  <div class="card">
+    <h1>アクセス拒否</h1>
+    <p>3回連続でパスワードを間違えたため、このページへのアクセスはできません。</p>
+    <p>再度やり直してください。</p>
+  </div>
+</body>
+</html>
