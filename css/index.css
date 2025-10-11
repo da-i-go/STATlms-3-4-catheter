@@ -120,10 +120,36 @@ body {
   filter: saturate(0.8);
 }
 
-
-/* ===== Optional: error text (将来用) ===== */
-.error {
-  color: #d32f2f;
-  font-size: 14px;
-  margin-top: 8px;
+/* フォーカスはキーボード操作時だけ強調（クリック時は控えめ） */
+.input:focus-visible {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 3px rgba(25,118,210,.15);
 }
+.input:focus { box-shadow: none; } /* クリック時の濫用を抑制 */
+
+/* iPhoneのタップハイライト抑制＆セーフエリア配慮 */
+body { -webkit-tap-highlight-color: transparent; }
+.container {
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+}
+
+/* とても小さい端末向けの微縮小 */
+@media (max-width: 360px) {
+  .container { margin: 5vh auto; padding: 12px; }
+  .card { padding: 16px; }
+  .title { font-size: 18px; }
+  .btn, .input { font-size: 15px; padding: 10px 12px; }
+}
+
+/* 低速・苦手な人向けにアニメ最小化 */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ボタンDisabled時の見た目を少し明確に */
+.btn[disabled] {
+  opacity: .7; cursor: not-allowed; filter: saturate(.8);
+  box-shadow: none;
+}
+
