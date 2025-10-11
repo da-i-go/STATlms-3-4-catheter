@@ -32,7 +32,7 @@
       try {
         const r = await fetch(API + '?route=verify', {
           method: 'POST',
-          headers: {'Content-Type':'application/json'},
+          headers: {'Content-Type':'text/plain;charset=utf-8'},
           body: JSON.stringify({ uid })
         });
         const j = await r.json();
