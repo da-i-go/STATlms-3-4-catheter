@@ -52,9 +52,9 @@
       </div>
     </section>
 
-    <!-- ページを閉じるボタン -->
+    <!-- 問題一覧へ戻る -->
     <div class="back-button">
-      <button id="closeBtn">ページを閉じる</button>
+      <a href="problems.html">問題一覧へ戻る</a>
     </div>
 
     <!-- スライド操作スクリプト -->
@@ -119,34 +119,19 @@
       window.addEventListener("resize", updateSlidePosition);
     </script>
 
-    <!-- ページを閉じるボタンスクリプト -->
-    <script>
-      document.getElementById("closeBtn").addEventListener("click", () => {
-        window.close();
-
-        // もし閉じられなかった場合（普通のブラウザタブ）
-        setTimeout(() => {
-          if (!window.closed) {
-            alert("このページを閉じて終了してください。");
-          }
-        }, 300);
-      });
-    </script>
-
     <!-- スプレッドシート記録スクリプト -->
     <script>
       (function () {
         if (sessionStorage.getItem("authenticated") !== "true") return;
-        const API =
-          "https://script.google.com/macros/s/AKfycbxZP5jL90wjUA80D_XxGO1IyEwCrEmW4TB-n_Y999lHVUQ9OgUIErIbGBEWlbPJfj8-/exec";
-        const uid = sessionStorage.getItem("uid") || "anonymous";
-        const page = location.pathname;
-        const ts = new Date().toISOString();
+        const API = "https://script.google.com/macros/s/AKfycbx8b_17MyBUxJtJhJ21KFSfJguUBSGKHBg-WjLHHylbqho1pFjZKIMjvqlMWzUWNFcC/exec"; // GASのURL
+        const uid = sessionStorage.getItem("uid") || "";
+        const problemId = "3-4"; // ← ページごとに固定
+        const page = location.pathname + location.search;
 
-        fetch(API + "?route=log", {
+        fetch(API + "?route=done", {
           method: "POST",
           headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({ uid, page, ts }),
+          body: JSON.stringify({ uid, problemId, page }),
         }).catch(console.warn);
       })();
     </script>
