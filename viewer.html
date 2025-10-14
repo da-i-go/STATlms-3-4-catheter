@@ -159,12 +159,9 @@
       window.onload = () => {
         createSetButtons();
         updateButtonStates();
-        preloadImages(currentSet, () => {
-          loadingOverlay.style.display = "none";
-          mainContent.style.display = "flex";
-          updateSlice(currentSlice);
-        });
+        switchImageSetTo(currentSet); // ← これでスライドのmaxを直す
       };
+      
     </script>
   </body>
 </html>
