@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta name="robots" content="noindex, nofollow"/>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>患者情報</title>
-  <link rel="stylesheet" href="css/patient.css"/>
-  <script>
-    if (sessionStorage.getItem("authenticated") !== "true") {
-      location.replace("index.html");
-    }
-  </script>
-</head>
+  <head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>患者情報</title>
+    <link rel="stylesheet" href="css/patient.css" />
+    <script>
+      if (sessionStorage.getItem("authenticated") !== "true") {
+        location.replace("index.html");
+      }
+    </script>
+  </head>
 
-<body>
-  <h1>患者情報</h1>
+  <body>
+    <h1>患者情報</h1>
 
-  <div class="patient-card">
-    <div class="row">
-      <span class="label">患者</span>
-      <span class="value">50代、女性</span>
-    </div>
-    <div class="row">
-      <span class="label">現病歴</span>
-      <span class="value">ホジキンリンパ腫のため化学療法中</span>
-    </div>
-    <div class="row">
-      <span class="label">検査内容</span>
-      <span class="value">Xp、CT</span>
-    </div>
-    <div class="highlight-question">
-      緊急で呼び出しをされた所見は？
-    </div>
-  </div>
+    <div class="patient-card">
+      <div class="row">
+        <span class="label">患者</span>
+        <span class="value">50代、女性</span>
+      </div>
 
-  <div class="next-button">
-    <a href="viewer.html">▶ 検査画像へ</a>
-  </div>
-</body>
+      <div class="row">
+        <span class="label">現病歴</span>
+        <span class="value">ホジキンリンパ腫のため化学療法中</span>
+      </div>
+
+      <div class="row">
+        <span class="label">検査内容</span>
+        <span class="value">Xp、CT</span>
+      </div>
+
+      <div class="highlight-question">
+        緊急で呼び出しをされた所見は？
+      </div>
+    </div>
+
+    <div class="next-button">
+      <a href="viewer.html">▶ 検査画像へ</a>
+    </div>
+  </body>
 </html>
