@@ -22,11 +22,6 @@
 
     (function () {
       const params = new URLSearchParams(location.search);
-      // テスト・直リンク用: ?force=1 をURLの末尾に追加してあるなら認証チェックをスキップして即 patient.html
-      if (params.get("force") === "1") {
-        location.replace(DEST_PATIENT);
-        return;
-      }
 
       // ポータルでログイン済みか判定（同一オリジンなら sessionStorage は引き継がれる）
       // ※ あなたの既存実装：index.html → problems.html で sessionStorage に保存しています
