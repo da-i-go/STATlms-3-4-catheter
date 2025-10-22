@@ -226,3 +226,43 @@ h1 {
 .back-button button:hover {
   background: #135ba0;
 }
+
+
+/* === Lightbox (薄い黒背景の拡大表示) ======================= */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .7);
+  display: none;                 /* 初期は非表示 */
+  align-items: center;
+  justify-content: center;
+  padding: 4vmin;
+  z-index: 9999;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 24px;
+  line-height: 1;
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (pointer: coarse) {
+  .lightbox__close { font-size: 20px; padding: 10px 14px; }
+}
